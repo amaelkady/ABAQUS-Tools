@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="500" src="Screenshot.png" alt="SRConED Explorer">
+  <img width="1000" src="Screenshot.png" alt="SRConED Explorer">
 </p>
 
 --------------
