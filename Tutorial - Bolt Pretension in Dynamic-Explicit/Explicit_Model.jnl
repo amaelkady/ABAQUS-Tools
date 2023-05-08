@@ -1,0 +1,332 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from optimization import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].BoltLoad(boltMethod=APPLY_FORCE, createStepName=
+    'Pretensioning', datumAxis=None, magnitude=50000.0, name='Bolt_Preload', 
+    preTenSecPartLevel=True, region=Region(
+    side1Faces=mdb.models['Model-1'].rootAssembly.instances['Bolt-1'].faces.getSequenceFromMask(
+    mask=('[#f ]', ), )))
+mdb.models['Model-1'].keywordBlock.synchVersions(storeNodesAndElements=False)
+mdb.models['Model-1'].keywordBlock.replace(498, 
+    '\n** \n** FIELD OUTPUT: F-Output-Pretension\n** \n*NODE FILE, FREQUENCY=1\nU')
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName=
+    'Pretensioning', distributionType=UNIFORM, fieldName='', fixed=OFF, 
+    localCsys=None, name='Beam_Disp', region=Region(referencePoints=(
+    mdb.models['Model-1'].rootAssembly.referencePoints[19], )), u1=UNSET, u2=
+    -10.0, u3=UNSET, ur1=UNSET, ur2=UNSET, ur3=UNSET)
+mdb.Job(atTime=None, contactPrint=OFF, description='', echoPrint=OFF, 
+    explicitPrecision=SINGLE, getMemoryFromAnalysis=True, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Static_Preload', nodalOutputPrecision=
+    SINGLE, numCpus=4, numDomains=4, numGPUs=0, queue=None, resultsFormat=ODB, 
+    scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Static_Preload'].submit(consistencyChecking=OFF)
+mdb.jobs['Static_Preload']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'ELKADY-DELL', 'handle': 0, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'The general contact domain for modeling contact interactions in Abaqus/Standard has double-sided facets. Initial contact adjustments for resolving gaps and  overclosures when a surface with double-sided facets is paired with any surface having double-sided facets may be incorrect. Similarly, adjustments for double-sided surfaces crossing each other may be incorrect and no additional warnings or error messages will be issued. In all these cases, we recommend using single-sided surfaces under *CONTACT INITIALIZATION ASSIGNMENT to  handle initial adjustments more precisely and avoid  possible convergence problems.', 
+    'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'PLEASE MAKE SURE THAT THE MESH DENSITY OF THE SECONDARY SURFACE IN THE TIE PAIR (ASSEMBLY_BEAM-1_SURF-BEAM-WELDED-END,ASSEMBLY_END-PLATE-1_SURF-PLATE-WELDED-FACE) IS FINER THAN THE MAIN SURFACE.  THE ANALYSIS MAY RUN SLOWER, MAY YIELD INACCURATE RESULTS, AND MAY REQUIRE MORE MEMORY IF THIS IS NOT THE CASE.', 
+    'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR *TIE PAIR (ASSEMBLY_BEAM-1_SURF-BEAM-WELDED-END-ASSEMBLY_END-PLATE-1_SURF-PLATE-WELDED-FACE), ADJUSTED NODES WITH VERY SMALL ADJUSTMENTS WERE NOT PRINTED. SPECIFY *PREPRINT,MODEL=YES FOR COMPLETE PRINTOUT.', 
+    'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': '40 elements are distorted. Either the isoparametric angles are out of the suggested limits or the triangular or tetrahedral quality measure is bad. The elements have been identified in element set WarnElemDistorted.', 
+    'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\DRIVE\\Bolt Explicit Pretension\\Static_Preload.odb', 
+    'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'ELKADY-DELL', 'handle': 11116, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STEP, {
+    'stepName': 'Adding a pretension force to the bolt', 
+    'phase': STANDARD_PHASE, 'stepId': 1, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'Static_Preload', 'memory': 697.0})
+mdb.jobs['Static_Preload']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 32522.0, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(MINIMUM_MEMORY, {'minimum_memory': 108.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.1, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 1, 'stepTime': 0.1, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 25, 'iterations': 26, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.175, 'attempts': 1, 
+    'timeIncrement': 0.075, 'increment': 2, 'stepTime': 0.175, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 4, 'iterations': 4, 
+    'phase': STANDARD_PHASE, 'equilibrium': 0})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.25, 'attempts': 1, 
+    'timeIncrement': 0.075, 'increment': 3, 'stepTime': 0.25, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.35, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 4, 'stepTime': 0.35, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 2, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 0})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.45, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 5, 'stepTime': 0.45, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.55, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 6, 'stepTime': 0.55, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.65, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 7, 'stepTime': 0.65, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.75, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 8, 'stepTime': 0.75, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 8, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.85, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 9, 'stepTime': 0.85, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 1, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 2})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 9, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 0.95, 'attempts': 1, 
+    'timeIncrement': 0.1, 'increment': 10, 'stepTime': 0.95, 'step': 1, 
+    'jobName': 'Static_Preload', 'severe': 2, 'iterations': 3, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 10, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 
+    'step': 0, 'frame': 11, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 0.0500000000000001, 'increment': 11, 'stepTime': 1.0, 
+    'step': 1, 'jobName': 'Static_Preload', 'severe': 1, 'iterations': 2, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['Static_Preload']._Message(END_STEP, {'phase': STANDARD_PHASE, 
+    'stepId': 1, 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Static_Preload'})
+mdb.jobs['Static_Preload']._Message(JOB_COMPLETED, {
+    'time': 'Fri Apr 21 10:12:34 2023', 'jobName': 'Static_Preload'})
+# Save by ahmed on 2023_04_21-10.15.21; build 2021.HF6 2021_04_09-13.38.16 168095
+from part import *
+from material import *
+from section import *
+from optimization import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].keywordBlock.synchVersions(storeNodesAndElements=False)
+mdb.models['Model-1'].keywordBlock.setValues(edited=0)
+mdb.models['Model-1'].keywordBlock.synchVersions(storeNodesAndElements=False)
+mdb.models['Model-1'].keywordBlock.setValues(edited=0)
+del mdb.models['Model-1'].interactions['General Interaction']
+del mdb.models['Model-1'].steps['Pretensioning']
+mdb.models['Model-1'].ExplicitDynamicsStep(improvedDtMethod=ON, massScaling=((
+    SEMI_AUTOMATIC, MODEL, AT_BEGINNING, 0.0, 2e-05, BELOW_MIN, 0, 0, 0.0, 0.0, 
+    0, None), ), name='Loading_Dynamic', previous='Initial')
+mdb.models['Model-1'].ContactExp(createStepName='Initial', name=
+    'General_Interaction')
+mdb.models['Model-1'].interactions['General_Interaction'].includedPairs.setValuesInStep(
+    stepName='Initial', useAllstar=ON)
+mdb.models['Model-1'].interactions['General_Interaction'].contactPropertyAssignments.appendInStep(
+    assignments=((GLOBAL, SELF, 'IntProp'), ), stepName='Initial')
+mdb.models['Model-1'].parts['Beam'].setElementType(elemTypes=(ElemType(
+    elemCode=S4R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    hourglassControl=DEFAULT), ElemType(elemCode=S3R, elemLibrary=EXPLICIT)), 
+    regions=(mdb.models['Model-1'].parts['Beam'].faces.getSequenceFromMask((
+    '[#1f ]', ), ), ))
+mdb.models['Model-1'].parts['Bolt'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=EXPLICIT), 
+    ElemType(elemCode=C3D4, elemLibrary=EXPLICIT)), regions=(
+    mdb.models['Model-1'].parts['Bolt'].cells.getSequenceFromMask(('[#ffff ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['Column'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=EXPLICIT), 
+    ElemType(elemCode=C3D4, elemLibrary=EXPLICIT)), regions=(
+    mdb.models['Model-1'].parts['Column'].cells.getSequenceFromMask((
+    '[#ffffffff:2 #3 ]', ), ), ))
+mdb.models['Model-1'].parts['End-Plate'].setElementType(elemTypes=(ElemType(
+    elemCode=C3D8R, elemLibrary=EXPLICIT, secondOrderAccuracy=OFF, 
+    kinematicSplit=AVERAGE_STRAIN, hourglassControl=DEFAULT, 
+    distortionControl=DEFAULT), ElemType(elemCode=C3D6, elemLibrary=EXPLICIT), 
+    ElemType(elemCode=C3D4, elemLibrary=EXPLICIT)), regions=(
+    mdb.models['Model-1'].parts['End-Plate'].cells.getSequenceFromMask((
+    '[#ffff ]', ), ), ))
+mdb.models['Model-1'].rootAssembly.regenerate()
+mdb.models['Model-1'].keywordBlock.synchVersions(storeNodesAndElements=False)
+mdb.models['Model-1'].keywordBlock.replace(129, 
+    '\n** ----------------------------------------------------------------\n** \n*IMPERFECTION, FILE=Static_Preload, STEP=1\n1, 1.0\n** STEP: Loading_Dynamic\n**')
+del mdb.jobs['Static_Preload']
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=DOUBLE_PLUS_PACK, 
+    historyPrint=OFF, memory=90, memoryUnits=PERCENTAGE, model='Model-1', 
+    modelPrint=OFF, multiprocessingMode=DEFAULT, name='Explicit_loading', 
+    nodalOutputPrecision=SINGLE, numCpus=4, numDomains=4, 
+    parallelizationMethodExplicit=DOMAIN, queue=None, resultsFormat=ODB, 
+    scratch='', type=ANALYSIS, userSubroutine='', waitHours=0, waitMinutes=0)
+mdb.jobs['Explicit_loading'].submit(consistencyChecking=OFF)
+mdb.jobs['Explicit_loading']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'ELKADY-DELL', 'handle': 0, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE PART INSTANCE FOR SOME NODES IN THE OLD MODEL COULD BE FOUND IN THE CURRENT MODEL. THE NAMES OF REQUIRED PART INSTANCES MUST BE CONSISTENT.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'THE PREVIOUS ANALYSIS CONTAINED 28083 NODES, BUT ONLY 28079 NODES WERE FOUND ON THE RESULTS FILE', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': '40 elements are distorted. Either the isoparametric angles are out of the suggested limits or the triangular or tetrahedral quality measure is bad. The elements have been identified in element set WarnElemDistorted.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OP=NEW on *CONTACT is ignored when the general contact definition is specified as model data.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STARTED, {'phase': PACKAGER_PHASE, 
+    'clientHost': 'ELKADY-DELL', 'handle': 11036, 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'There are 4 warning messages in the data (.dat) file.  Please check the data file for possible errors in the input file.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'The thickness used in the general contact algorithm for elements in element set WarnElemGContThickReduce has been reduced. See the status file for further details.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(WARNING, {'phase': PACKAGER_PHASE, 
+    'message': 'Disconnected surfaces in the general contact domains are tied together, but the the surface connectivity is not altered, creating a seam in the contact surface.  Nodes along the tied surface perimeters have been added to node set WarnNodePerimTieSeam.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(COMPLETED, {'phase': PACKAGER_PHASE, 
+    'message': 'Phase complete', 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STARTED, {'phase': EXPLICIT_PHASE, 
+    'clientHost': 'ELKADY-DELL', 'handle': 8340, 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.0, 
+    'stableTimeIncrement': 1.90692517849118e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.0, 
+    'totalEnergy': 3220.61462408047, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 0, 'phase': EXPLICIT_PHASE, 'kineticEnergy': 0.0, 
+    'wallTime': 0.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 0, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.0500020321149942, 
+    'stableTimeIncrement': 2.06620587076392e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.0500020321149942, 
+    'totalEnergy': 3198.91805192133, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 2421, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 776.69129878065, 'wallTime': 13.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 1, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.100008310512474, 
+    'stableTimeIncrement': 2.06644805816846e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.100008310512474, 
+    'totalEnergy': 3198.12290524184, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 4841, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 544.546187089291, 'wallTime': 26.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 2, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.150015017128395, 
+    'stableTimeIncrement': 2.0663973225095e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.150015017128395, 
+    'totalEnergy': 3197.90497620779, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 7261, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 191.380706184911, 'wallTime': 39.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 3, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.200019773312849, 
+    'stableTimeIncrement': 2.06577762370747e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.200019773312849, 
+    'totalEnergy': 3197.73818372682, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 9681, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 254.963118855388, 'wallTime': 52.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 4, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.250003609673865, 
+    'stableTimeIncrement': 2.06632220616817e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.250003609673865, 
+    'totalEnergy': 3197.71106399382, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 12100, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 226.486108802519, 'wallTime': 65.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 5, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.300008027778801, 
+    'stableTimeIncrement': 2.06629563889233e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.300008027778801, 
+    'totalEnergy': 3197.56990036883, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 14520, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 245.757881455887, 'wallTime': 78.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 6, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.350011996999474, 
+    'stableTimeIncrement': 2.06623341440981e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.350011996999474, 
+    'totalEnergy': 3197.56290518397, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 16940, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 156.986456759857, 'wallTime': 91.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 7, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.400014751587058, 
+    'stableTimeIncrement': 2.0662015027418e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.400014751587058, 
+    'totalEnergy': 3197.47237800756, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 19360, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 106.605988184173, 'wallTime': 104.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 8, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(STATUS, {'totalTime': 0.450016702573777, 
+    'stableTimeIncrement': 2.06622714462681e-05, 
+    'percentChngMass': 48007.9047003221, 'stepTime': 0.450016702573777, 
+    'totalEnergy': 3197.44327630947, 'jobName': 'Explicit_loading', 'step': 1, 
+    'increment': 21780, 'phase': EXPLICIT_PHASE, 
+    'kineticEnergy': 97.3482474540835, 'wallTime': 117.0})
+mdb.jobs['Explicit_loading']._Message(ODB_FRAME, {'phase': EXPLICIT_PHASE, 
+    'step': 0, 'frame': 9, 'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(ERROR, {'phase': EXPLICIT_PHASE, 
+    'message': 'Process terminated by external request (SIGTERM or SIGINT received).', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(INTERRUPTED, {'phase': EXPLICIT_PHASE, 
+    'message': 'Analysis terminated by external signal', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(ERROR, {
+    'message': 'Abaqus/Explicit Analysis exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Explicit_loading'})
+mdb.jobs['Explicit_loading']._Message(JOB_ABORTED, {
+    'message': 'Abaqus/Explicit Analysis exited with an error - Please see the  status file for possible error messages if the file exists.', 
+    'jobName': 'Explicit_loading'})
+# Save by ahmed on 2023_04_21-10.29.47; build 2021.HF6 2021_04_09-13.38.16 168095
