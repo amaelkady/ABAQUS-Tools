@@ -2,7 +2,7 @@
   <img width="1000" src="Screenshot.png" alt="SRConED Explorer">
 </p>
 
-# NEW: The steel and CDP generators are now available throungh an [online app](https://amaelkady.github.io/ABAQUS%20Tools.html)
+# NEW: The steel and CDP generators are now also available through an [online app](https://amaelkady.github.io/ABAQUS%20Tools.html)
 
 --------------
 
